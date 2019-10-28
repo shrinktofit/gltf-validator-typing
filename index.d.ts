@@ -105,5 +105,7 @@ declare module 'gltf-validator' {
         Warning = 1,
 
         Information = 2,
+        
+        Hint = 3,
     }
 }
