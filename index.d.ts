@@ -36,7 +36,7 @@ declare module 'gltf-validator' {
          * Object with overridden severities for issue codes.
          */
         severityOverrides?: {
-            [x: string]: number;
+            [x: string]: Severity;
         };
 
         /**
@@ -48,13 +48,6 @@ declare module 'gltf-validator' {
          * Set to false to skip reading of accessor data.
          */
         validateAccessorData?: boolean;
-    }
-
-    export interface Resource {
-        pointer: string;
-        mimeType: string;
-        storage: string;
-        uri: string;
     }
 
     export interface Report {
@@ -71,7 +64,7 @@ declare module 'gltf-validator' {
                 code: string;
                 message: string;
                 pointer: string;
-                severity: number;
+                severity: Severity;
             }>;
             truncated: boolean;
         };
@@ -99,13 +92,11 @@ declare module 'gltf-validator' {
 
     export function validateString(json: string, options?: ValidationOptions): Promise<Report>;
 
-    export const enum Severity {
-        Error = 0,
-
-        Warning = 1,
-
-        Information = 2,
-        
-        Hint = 3,
-    }
+    /**
+     * 0 - Error
+     * 1 - Warning
+     * 2 - Information
+     * 3 - Hint
+     */
+    export type Severity = 0 | 1 | 2 | 3;
 }
